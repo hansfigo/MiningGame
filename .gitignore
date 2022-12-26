@@ -1,3 +1,4 @@
 *.exe
+.vscode/
 saveGames.txt
 *tempCodeRunnerFile.cpp
