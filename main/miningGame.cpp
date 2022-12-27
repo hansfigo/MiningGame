@@ -50,7 +50,10 @@ int main(int argc, char const *argv[])
     {
         mainMenu();
 
-        scoreIndex += 1;
+        if (userName[0] != "")
+        {
+            scoreIndex += 1;
+        }
 
         gameOver();
 
@@ -86,8 +89,6 @@ void mainMenu()
         {
             leaderboard();
         }
-
-        
     }
 }
 
