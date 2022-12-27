@@ -50,7 +50,10 @@ int main(int argc, char const *argv[])
     {
         mainMenu();
 
-        if (userName[0] != "")
+        // this Block code for prevent leaderboards bug
+        // Check if player haver created username or not
+        // then give scoreIndex += 1 if they created username;
+        if (isHasPlayed == 'Y')
         {
             scoreIndex += 1;
         }
@@ -69,6 +72,8 @@ void mainMenu()
     while (user != 'Q')
     {
         system("cls");
+
+        // This Code is Calling Function for Creating ASCII main Title from txt file
         printASCII(ascii);
         cout << "\nHello!!\nWelcome to our minigames\n\nSelect Menu\n[1]New Game\n[2]Leaderboard";
         cout << "\n\n\nPress Q to Exit Game " << endl;
@@ -98,6 +103,10 @@ void askUsername()
     Sleep(600);
     cout << "Please input your name : ";
     getline(cin, userName[scoreIndex]);
+
+    // This code is for preventing leaderboard bug
+    // Mark the player that they have played the game
+    // so their score can show on leaderboard
     isHasPlayed = 'Y';
 }
 
@@ -166,6 +175,8 @@ void homeMenu()
         if (user == '1')
         {
             mine();
+
+            // This Code is for checking if player are dead or not by passing var value
             if (isGameOver == 'N')
             {
                 user = 'Q';
@@ -193,6 +204,7 @@ void homeMenu()
 
             if (user == 'Y')
             {
+                // If player want to exit then break the while loops
                 system("cls");
                 break;
             }
@@ -214,6 +226,12 @@ void mine()
     {
         do
         {
+            // This Block code is showing the Mining Process
+            // While keyboard keys is not pressed
+            // then start Mining Process
+            // If pressed then check its value
+            // if equalto H then use Medkit
+            // if equal to Q then exit mining
             while (!_kbhit())
             {
                 isGameOverMine = ' ';
@@ -235,6 +253,11 @@ void mine()
                 cout << "\n\n\nHp : " << hp << "     Press Q to Exit";
                 cout << "\nMedkit : " << med << "     Press H to use Medkit" << endl;
 
+                // This block code is for checking is player dead or not
+                // First cheking if health is lower than 0 or not
+                // Then chekking the userInput
+                // if user input to use medkit first then use medkit
+                // else player dead
                 if (hp <= 0)
                 {
                     if (isUseMed == true)
@@ -264,8 +287,11 @@ void mine()
             }
             else
             {
+                // This 2 line Code is for get userinput
+                // theh convert user input to uppercase
                 int input = _getch();
                 input = toupper(input);
+
                 if (input == 'Q')
                 {
                     isMining = 'Q';
@@ -298,6 +324,9 @@ void town()
         Sleep(200);
         user = ' ';
         cout << "You're in Town\nSelect Action\n[1]Sell\n[2]Buy Med\n[3]Go Home" << endl;
+
+        // This 2 line Code is for get userinput
+        // theh convert user input to uppercase
         user = _getch();
         user = toupper(user);
 
@@ -336,6 +365,7 @@ void sell()
 
 void buyMed()
 {
+
 
     if (coin != 0)
     {
