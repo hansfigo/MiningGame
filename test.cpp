@@ -12,12 +12,18 @@
 
 using namespace std;
 
-int hp, copper, silver, gold, coin, med, earnings[20], scoreIndex = 0;
-int isGameOver, user;
-string userName[20], dif;
+// c = 7 for default color
+void setConsoleColor(WORD c)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
+}
 
 int main()
 {
-   cout << 1/2 ;
-    return 0;
+    // setConsoleColor(FOREGROUND_RED | BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED );
+    setConsoleColor(3);
+    std::cout << "Hello\n";
+    setConsoleColor(2);
+    std::cout << "Goodbye\n";
+    // setConsoleColor(8);
 }

@@ -35,6 +35,7 @@ void useMedkit();
 void gameOver();
 void log();
 void printASCII(string filename);
+void setConsoleColor(WORD c);
 void isExit();
 
 int main(int argc, char const *argv[])
@@ -59,8 +60,7 @@ int main(int argc, char const *argv[])
         }
 
         gameOver();
-
-    } 
+    }
 
     return 0;
 }
@@ -73,11 +73,25 @@ void mainMenu()
     {
         system("cls");
 
-      
-        printASCII(ascii);  // Calling Function for Creating ASCII main Title from txt file
-        cout << "\nHello!!\nWelcome to our minigames\n\nSelect Menu\n[1]New Game\n[2]Leaderboard";
-        cout << "\n\n\nPress Q to Exit Game " << endl;
-        user = _getch(); // Get user input
+        setConsoleColor(6);
+        printASCII(ascii); // Calling Function for Creating ASCII main Title from txt file
+        setConsoleColor(7);
+        cout << "\nWelcome to our minigames\n\nSelect Menu";
+        setConsoleColor(14);
+        cout << "\n[1]";
+        setConsoleColor(7);
+        cout << "New Game";
+        setConsoleColor(14);
+        cout << "\n[2]";
+        setConsoleColor(7);
+        cout << "Leaderboard";
+        setConsoleColor(7);
+        cout << "\n\n\nPress ";
+        setConsoleColor(4);
+        cout << "Q ";
+        setConsoleColor(7);
+        cout << "to Exit Game " << endl;
+        user = _getch();      // Get user input
         user = toupper(user); // Convert input to uppercase
 
         if (user == '1')
@@ -100,7 +114,7 @@ void mainMenu()
 void askUsername()
 {
     system("cls");
-    Sleep(600);
+    Sleep(400);
     cout << "Please input your name : ";
     getline(cin, userName[scoreIndex]);
 
@@ -117,8 +131,9 @@ void leaderboard()
     if (isHasPlayed != 'Y') // if user hasnt create username, then output no record
     {
         cout << "No Records \n";
-        Sleep(1000);
-        system("cls");
+        cout << "\n\nPress any key to return\n";
+
+        _getch();
     }
     else // if user has create username, then output leaderboard
     {
@@ -156,28 +171,31 @@ void difficultyMenu()
 void homeMenu()
 {
 
-    while (user != 'Q') // while user is not decided to exit by pressing Q 
+    while (user != 'Q') // while user is not decided to exit by pressing Q
     {
         system("cls");
         Sleep(200);
         user = ' ';
         system("cls");
-        cout << "Difficulty : " << dif << "    Earning :" << earnings[scoreIndex];
+        cout << "Difficulty : " << dif << "    Earning : " << earnings[scoreIndex];
         cout << "\n\nWelcome Home " << userName[scoreIndex] << "\n\nSelect Actions\n[1]Mine\n[2]Town" << endl;
         cout << "\n\n\n\n\n"
-             << "Copper :" << copper << "  Silver :" << silver << "  Gold :" << gold << "  Coin : " << coin << "\n\nHP : " << hp << "  Medkit : " << med << endl;
+             << "Copper : " << copper << "  Silver : " << silver << "  Gold : " << gold << "  Coins : " << coin << "\n\nHP : " << hp << "  Medkit : " << med << endl;
 
         cout << "\n\nPress H to Use Medkit " << endl;
         cout << "Press Q to Exit Game " << endl;
         user = _getch();
         user = toupper(user);
 
+        cout << user;
+        Sleep(1000);
+        system("cls");
+
         if (user == '1')
         {
             mine();
 
-            // This Code is for checking if player are dead or not by passing var value
-            if (isGameOver == 'N')
+            if (isGameOver == 'N') // This Code is for checking if player are dead or not by passing var value
             {
                 user = 'Q';
                 break;
@@ -198,7 +216,7 @@ void homeMenu()
         {
             system("cls");
             cout << "QUIT GAME?";
-            cout << "\nProgress will not be saved ? (y/n)";
+            cout << "\n\nProgress will not be saved ? (y/n)";
             user = _getch();
             user = toupper(user);
 
@@ -220,15 +238,15 @@ void homeMenu()
 void mine()
 {
 
-    int isMining, isGameOverMine;
+    int isMining = ' ', isGameOverMine;
     bool isUseMed;
 
     // This Block code is showing the Mining Process
-    while (isMining != 'Q')// While user is not decided to exit
+    while (isMining != 'Q') // While user is not decided to exit
     {
-        while (hp <= 0) // While user health is more than 0 / user is not dead
+        log();
+        while (hp != 0) // While user health is more than 0 / user is not dead
         {
-            
             while (!_kbhit()) // While keyboard keys is not pressed, then start Mining Process
             {
                 isGameOverMine = ' ';
@@ -251,15 +269,15 @@ void mine()
                 cout << "\nMedkit : " << med << "     Press H to use Medkit" << endl;
 
                 // This block code is for checking is player dead or not
-                // Also check if user have pressed use MedKit button first before user hp is = 0               
-                if (hp <= 0)// First cheking if health is lower than 0 or not, Then chekking the userInput
+                // Also check if user have pressed use MedKit button first before user hp is = 0
+                if (hp <= 0) // First cheking if health is lower than 0 or not, Then chekking the userInput
                 {
-                    if (isUseMed == true) // If user have pressed use MedKit button first, then Heal 
+                    if (isUseMed == true) // If user have pressed use MedKit button first, then Heal
                     {
                         useMedkit();
                         isUseMed = false;
                     }
-                    else //If user have not pressed use Medkit button then user is Dead dan break the loop
+                    else // If user have not pressed use Medkit button then user is Dead dan break the loop
                     {
                         isGameOverMine = 'N';
                         break;
@@ -273,15 +291,18 @@ void mine()
             if (isGameOverMine == 'N') // Check if user is dead or not from isGameoverMine Var
             {
                 system("cls");
-                cout << "You are dead !!";
-                Sleep(1000);
+                cout << "You are ";
+                setConsoleColor(4);
+                cout << "dead !!";
+                setConsoleColor(4);
+                cout << "\n\nPress any key to continue";
+                _getch();
                 isGameOver = isGameOverMine;
                 break;
             }
             else
             {
-             
-               
+
                 int input = _getch();   // Get user input
                 input = toupper(input); // Then convert user input to uppercase
 
@@ -317,9 +338,7 @@ void town()
         user = ' ';
         cout << "You're in Town\nSelect Action\n[1]Sell\n[2]Buy Med\n[3]Go Home" << endl;
 
-        
-        
-        user = _getch(); // This 2 line Code is for get user input
+        user = _getch();      // This 2 line Code is for get user input
         user = toupper(user); // then convert user input to uppercase
 
         if (user == '1')
@@ -425,28 +444,40 @@ void buyMed()
 void random()
 {
     int random;
-    random = rand() % 100; // Generate Random number 0 to 100
+    random = rand() % 100;          // Generate Random number 0 to 100
     if (random >= 0 && random <= 5) // If get 0 to 5 then you get gold
     {
+        setConsoleColor(14);
         cout << "Alhamdullilah Gusti Dapet Gold\n";
+        setConsoleColor(7);
         Sleep(200);
         gold += 1;
     }
     else if (random > 5 && random <= 15) // If get 5 to 15 then you get Silver
     {
+        setConsoleColor(13);
         cout << "Ihiyyy Silver nih Cuyy\n";
+        setConsoleColor(7);
         Sleep(200);
         silver += 1;
     }
     else if (random > 15 && random <= 25) // If get 15 to 25 then you get Copper
     {
+        setConsoleColor(9);
         cout << "Mayan Copper\n";
+        setConsoleColor(7);
         Sleep(200);
         copper += 1;
     }
     else if (random > 26 && random <= 50) // If get 26 to 50 then you encouter an enemy and HP is reduced by 2
     {
-        cout << "You've Encountered an Enemy !!\n\nhp -2!!";
+        setConsoleColor(4);
+        cout << "You've Encountered an Enemy !!";
+        setConsoleColor(7);
+        cout << "\n\nhp ";
+        setConsoleColor(4);
+        cout << "-2!!";
+        setConsoleColor(7);
         Sleep(600);
         hp -= 2;
 
@@ -478,7 +509,11 @@ void useMedkit()
         else
         {
             system("cls");
-            cout << "+2 HP";
+            cout << "Used Medkit !!\n";
+            setConsoleColor(2);
+            cout << "+2";
+            setConsoleColor(7);
+            cout << "HP";
             Sleep(800);
             system("cls");
             med -= 1;
@@ -488,7 +523,9 @@ void useMedkit()
     else
     {
         system("cls");
+        setConsoleColor(6);
         cout << "You don't have Medkit !!";
+        setConsoleColor(7);
         Sleep(400);
         system("cls");
     }
@@ -505,7 +542,10 @@ void log()
 void gameOver()
 {
     system("cls");
-    cout << "Game Over !! \nContinue? (y/n)";
+    setConsoleColor(4);
+    cout << "Game Over !!";
+    setConsoleColor(7);
+    cout << "\n\n\nDo you want to continue? (y/n)";
     isGameOver = _getch();
     isGameOver = toupper(isGameOver);
     system("cls");
@@ -527,6 +567,11 @@ void printASCII(string filename)
     {
         cout << "Failed to Display" << endl;
     }
+}
+
+void setConsoleColor(WORD c)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), c);
 }
 
 void saveGame()
