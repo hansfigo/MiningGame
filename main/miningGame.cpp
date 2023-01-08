@@ -187,10 +187,6 @@ void homeMenu()
         user = _getch();
         user = toupper(user);
 
-        cout << user;
-        Sleep(1000);
-        system("cls");
-
         if (user == '1')
         {
             mine();
@@ -244,7 +240,6 @@ void mine()
     // This Block code is showing the Mining Process
     while (isMining != 'Q') // While user is not decided to exit
     {
-        log();
         while (hp != 0) // While user health is more than 0 / user is not dead
         {
             while (!_kbhit()) // While keyboard keys is not pressed, then start Mining Process
@@ -252,18 +247,72 @@ void mine()
                 isGameOverMine = ' ';
 
                 system("cls");
-                cout << "Mining." << endl;
+                cout << "===========" << endl;
+                cout << "||Mining.||" << endl;
+                cout << "===========\n\n"
+                     << endl;
+                cout << "000000000000000000000000oooooo" << endl;
+                cout << "0000000000000      " << endl;
+                cout << "000000000   111 " << endl;
+                cout << "00000000  111H111 //// " << endl;
+                cout << "0000000      0    oo | " << endl;
+                cout << "0000000      HA   -  /  " << endl;
+                cout << "0000000        A0  HSsS       " << endl;
+                cout << "0000000          SSSSS        " << endl;
+                cout << "00000000          SSSS" << endl;
+                cout << "000000000         H H " << endl;
+                cout << "000000000 0     HH  H " << endl;
+                cout << "00000000000000000000oooooooooooo" << endl;
+                cout << "\n\n===================" << endl;
+                cout << "STATUS : NONE";
+                cout << "\n===================\n\n";
                 cout << "\n\n\nHp : " << hp << "     Press Q to Exit";
                 cout << "\nMedkit : " << med << "     Press H to use Medkit" << endl;
                 Sleep(800);
                 system("cls");
-                cout << "Mining.." << endl;
+                cout << "===========" << endl;
+                cout << "||Mining..||" << endl;
+                cout << "===========\n\n"
+                     << endl;
+                cout << "0000000000000000000000000000000" << endl;
+                cout << "0000000000000      " << endl;
+                cout << "000000000     " << endl;
+                cout << "0000000            //// " << endl;
+                cout << "000000  H          oo | " << endl;
+                cout << "0000000 _1         O  /  " << endl;
+                cout << "00000 A-1=0==0HHANHSsS       " << endl;
+                cout << "0000000 _1         SSSSS        " << endl;
+                cout << "00000000 H         SSSS" << endl;
+                cout << "000000000          H H " << endl;
+                cout << "000000000 0       HH  H " << endl;
+                cout << "000000000000000000000000000000000" << endl;
+                cout << "\n\n===================" << endl;
+                cout << "STATUS : NONE";
+                cout << "\n===================\n\n";
                 cout << "\n\n\nHp : " << hp << "     Press Q to Exit";
                 cout << "\nMedkit : " << med << "     Press H to use Medkit" << endl;
                 Sleep(1500);
                 system("cls");
-                cout << "Mining..." << endl;
+                cout << "===========" << endl;
+                cout << "||Mining...||" << endl;
+                cout << "===========\n\n"
+                     << endl;
+                cout << "\n000000000000000000000000000000" << endl;
+                cout << "0000000000000      " << endl;
+                cout << "000000000   111 " << endl;
+                cout << "00000000  111H111 //// " << endl;
+                cout << "0000000      0    oo | " << endl;
+                cout << "0000000      HA   0  /  " << endl;
+                cout << "0000000        A0  HSsS       " << endl;
+                cout << "0000000          SSSSS        " << endl;
+                cout << "00000000          SSSS" << endl;
+                cout << "000000000         H H " << endl;
+                cout << "000000000 0     HH  H " << endl;
+                cout << "0000000000000000000000000000000000\n\n"
+                     << endl;
+                cout << "===================\nSTATUS : ";
                 random();
+                cout << "===================\n\n";
 
                 cout << "\n\n\nHp : " << hp << "     Press Q to Exit";
                 cout << "\nMedkit : " << med << "     Press H to use Medkit" << endl;
@@ -461,7 +510,7 @@ void random()
         Sleep(200);
         silver += 1;
     }
-    else if (random > 15 && random <= 25) // If get 15 to 25 then you get Copper
+    else if (random > 15 && random <= 35) // If get 15 to 25 then you get Copper
     {
         setConsoleColor(9);
         cout << "Mayan Copper\n";
@@ -469,14 +518,14 @@ void random()
         Sleep(200);
         copper += 1;
     }
-    else if (random > 26 && random <= 50) // If get 26 to 50 then you encouter an enemy and HP is reduced by 2
+    else if (random > 36 && random <= 50) // If get 26 to 50 then you encouter an enemy and HP is reduced by 2
     {
         setConsoleColor(4);
         cout << "You've Encountered an Enemy !!";
         setConsoleColor(7);
-        cout << "\n\nhp ";
+        cout << "\n\nHP ";
         setConsoleColor(4);
-        cout << "-2!!";
+        cout << "-2!!\n";
         setConsoleColor(7);
         Sleep(600);
         hp -= 2;
@@ -513,7 +562,7 @@ void useMedkit()
             setConsoleColor(2);
             cout << "+2";
             setConsoleColor(7);
-            cout << "HP";
+            cout << " HP";
             Sleep(800);
             system("cls");
             med -= 1;
