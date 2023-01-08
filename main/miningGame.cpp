@@ -414,6 +414,10 @@ void sell()
     system("cls");
     int oldCoin = coin;
     coin += (gold * 5) + (silver * 3) + (copper * 1);
+    cout << " You Have Sold :\n";
+    cout << gold << " Gold\n";
+    cout << silver << " Silver\n";
+    cout << copper << " Copper";
     cout << "Alhamdullilah dapet +" << coin - oldCoin << endl;
     Sleep(1000);
     copper = 0;
