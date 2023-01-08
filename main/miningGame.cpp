@@ -414,12 +414,13 @@ void sell()
     system("cls");
     int oldCoin = coin;
     coin += (gold * 5) + (silver * 3) + (copper * 1);
-    cout << " You Have Sold :\n";
+    cout << "You Have Sold :\n";
     cout << gold << " Gold\n";
     cout << silver << " Silver\n";
     cout << copper << " Copper";
-    cout << "Alhamdullilah dapet +" << coin - oldCoin << endl;
-    Sleep(1000);
+    cout << "\n\nYour Got : " << coin - oldCoin << " Coins" << endl;
+    cout << "\n\nPress any key to go back" << endl;
+    getch();
     copper = 0;
     silver = 0;
     gold = 0;
@@ -554,8 +555,9 @@ void useMedkit()
         if (hp >= 5)
         {
             system("cls");
+            cout << "Can't use Medkit, your at Full HP !!\n";
             cout << "+0 HP";
-            Sleep(400);
+            Sleep(800);
             system("cls");
             hp = 5;
         }
