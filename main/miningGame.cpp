@@ -498,7 +498,7 @@ void buyMed()
 void random()
 {
     int random;
-    random = rand() % 100;          // Generate Random number 0 to 100
+    random = rand() % 100;// Generate Random number 0 to 100
     if (random >= 0 && random <= 5) // If get 0 to 5 then you get gold
     {
         setConsoleColor(14);
